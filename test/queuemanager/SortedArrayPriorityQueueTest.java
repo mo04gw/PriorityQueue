@@ -4,16 +4,40 @@
  */
 package queuemanager;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
 
 /**
  *
  * @author heidi
- */
+   @References: 
+   * “Getting Started with Junit in NetBeans.” YouTube, YouTube, 2 Feb. 2017, https://www.youtube.com/watch?v=Vnyeq3ZS_1Q. 
+**/
+
 public class SortedArrayPriorityQueueTest {
     
     public SortedArrayPriorityQueueTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
     }
 
     /**
@@ -21,6 +45,13 @@ public class SortedArrayPriorityQueueTest {
      */
     @Test
     public void testHead() throws Exception {
+        System.out.println("head()");
+        SortedArrayPriorityQueue instance = new SortedArrayPriorityQueue<>(2);
+        instance.add("Heidi",1);
+        instance.add("Marc",2);
+        Object expResult = "Marc";
+        Object result = instance.head();
+        assertEquals(expResult, result);
     }
 
     /**
