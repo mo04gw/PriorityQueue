@@ -42,8 +42,8 @@ public class SortedArrayPriorityQueueTest {
     }
 
     /**
-     * Test of head method, of class SortedArrayPriorityQueue. 
-     * Adding two instances, displaying the queue && log errors if test failed
+     * Test of head method, of class SortedArrayPriorityQueue. Adding two
+     * instances, displaying the queue && log errors if test failed
      */
     @Test
     public void testHead() throws Exception {
@@ -55,7 +55,7 @@ public class SortedArrayPriorityQueueTest {
         System.out.println("Your Priority Queue: " + instance);
         System.out.println("Result of Head: " + instance.head());
         Object result = instance.head();
-        
+
         try {
             assertEquals(expResult, result);
             System.out.println("Good news - Test Passed!");
@@ -67,8 +67,9 @@ public class SortedArrayPriorityQueueTest {
     }
 
     /**
-     * Test of add method, of class SortedArrayPriorityQueue.
-     * First: display an empty queue, making sure is empty. Second: add a new instance and display again the queue
+     * Test of add method, of class SortedArrayPriorityQueue. First: display an
+     * empty queue, making sure is empty. Second: add a new instance and display
+     * again the queue
      */
     @Test
     public void testAdd() throws Exception {
@@ -88,9 +89,25 @@ public class SortedArrayPriorityQueueTest {
 
     /**
      * Test of remove method, of class SortedArrayPriorityQueue.
+     * Adding two instances and displaying the queue after removing one of them
      */
     @Test
     public void testRemove() throws Exception {
+        System.out.println("\n" + "remove()");
+        SortedArrayPriorityQueue instance = new SortedArrayPriorityQueue(2);
+
+        instance.add("Heidi", 1);
+        instance.add("Marc", 2);
+
+        System.out.println("Your Priority Queue: " + instance);
+        try {
+            instance.remove();
+            System.out.println("Priority Queue after using .remove: " + instance);
+            System.out.println("Good news - Test Passed!");
+        } catch (AssertionError e) {
+            System.out.println("Oopsie, Test Failed");
+            System.out.println("Error log: " + e);
+        }
     }
 
     /**
@@ -98,6 +115,7 @@ public class SortedArrayPriorityQueueTest {
      */
     @Test
     public void testIsEmpty() {
+
     }
 
     /**
