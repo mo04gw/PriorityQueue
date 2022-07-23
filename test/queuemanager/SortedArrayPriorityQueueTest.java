@@ -15,12 +15,14 @@ import static org.junit.Assert.*;
 /**
  *
  * @author heidi
-   @References: 
-   * “Getting Started with Junit in NetBeans.” YouTube, YouTube, 2 Feb. 2017, https://www.youtube.com/watch?v=Vnyeq3ZS_1Q. 
-**/
-
+ * 
+ * 
+ * @References: “Getting Started with Junit in NetBeans.” YouTube, YouTube, 2
+ * Feb. 2017, https://www.youtube.com/watch?v=Vnyeq3ZS_1Q. 
+ *
+ */
 public class SortedArrayPriorityQueueTest {
-    
+
     public SortedArrayPriorityQueueTest() {
     }
 
@@ -42,23 +44,37 @@ public class SortedArrayPriorityQueueTest {
 
     /**
      * Test of head method, of class SortedArrayPriorityQueue.
+     * Adding two instances, displaying the queue && log errors if test failed
      */
     @Test
     public void testHead() throws Exception {
         System.out.println("head()");
-        SortedArrayPriorityQueue instance = new SortedArrayPriorityQueue<>(2);
-        instance.add("Heidi",1);
-        instance.add("Marc",2);
+        SortedArrayPriorityQueue instance = new SortedArrayPriorityQueue(2);
+        instance.add("Heidi", 1);
+        instance.add("Marc", 2);
         Object expResult = "Marc";
+        System.out.println("Your Priority Queue: " + instance);
+        System.out.println("Result of Head: " + instance.head());
         Object result = instance.head();
-        assertEquals(expResult, result);
+        try{
+            assertEquals(expResult, result);
+            System.out.println("Good news - Test Passed!");
+        }catch(AssertionError e){
+            System.out.println("Oopsie, Test Failed");
+            System.out.println("Error log: " + e);  
+        }
+         assertEquals(expResult, result);
     }
+   
 
     /**
      * Test of add method, of class SortedArrayPriorityQueue.
      */
     @Test
     public void testAdd() throws Exception {
+        System.out.println("add()");
+        SortedArrayPriorityQueue instance = new SortedArrayPriorityQueue(1);
+        
     }
 
     /**
@@ -81,5 +97,5 @@ public class SortedArrayPriorityQueueTest {
     @Test
     public void testToString() {
     }
-    
+
 }
