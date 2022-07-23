@@ -11,14 +11,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-
 /**
  *
  * @author heidi
- * 
- * 
+ *
+ *
  * @References: “Getting Started with Junit in NetBeans.” YouTube, YouTube, 2
- * Feb. 2017, https://www.youtube.com/watch?v=Vnyeq3ZS_1Q. 
+ * Feb. 2017, https://www.youtube.com/watch?v=Vnyeq3ZS_1Q.
  *
  */
 public class SortedArrayPriorityQueueTest {
@@ -43,12 +42,12 @@ public class SortedArrayPriorityQueueTest {
     }
 
     /**
-     * Test of head method, of class SortedArrayPriorityQueue.
+     * Test of head method, of class SortedArrayPriorityQueue. 
      * Adding two instances, displaying the queue && log errors if test failed
      */
     @Test
     public void testHead() throws Exception {
-        System.out.println("head()");
+        System.out.println("\n" + "head()");
         SortedArrayPriorityQueue instance = new SortedArrayPriorityQueue(2);
         instance.add("Heidi", 1);
         instance.add("Marc", 2);
@@ -56,25 +55,35 @@ public class SortedArrayPriorityQueueTest {
         System.out.println("Your Priority Queue: " + instance);
         System.out.println("Result of Head: " + instance.head());
         Object result = instance.head();
-        try{
+        
+        try {
             assertEquals(expResult, result);
             System.out.println("Good news - Test Passed!");
-        }catch(AssertionError e){
+        } catch (AssertionError e) {
             System.out.println("Oopsie, Test Failed");
-            System.out.println("Error log: " + e);  
+            System.out.println("Error log: " + e);
         }
-         assertEquals(expResult, result);
+        assertEquals(expResult, result);
     }
-   
 
     /**
      * Test of add method, of class SortedArrayPriorityQueue.
+     * First: display an empty queue, making sure is empty. Second: add a new instance and display again the queue
      */
     @Test
     public void testAdd() throws Exception {
         System.out.println("add()");
         SortedArrayPriorityQueue instance = new SortedArrayPriorityQueue(1);
-        
+        System.out.println("Checking empty queue: " + instance);
+        assertTrue(instance.isEmpty());
+
+        try {
+            instance.add("Heidi", 1);
+            System.out.println("Priority Queue after using .add: " + instance);
+        } catch (AssertionError e) {
+            System.out.println("Oopsie, Test Failed");
+            System.out.println("Error log: " + e);
+        }
     }
 
     /**
