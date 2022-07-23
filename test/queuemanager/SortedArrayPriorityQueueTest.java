@@ -4,10 +4,10 @@
  */
 package queuemanager;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -15,22 +15,17 @@ import static org.junit.Assert.*;
  *
  * @author heidi
  *
+ * @References: 
+ * - “Getting Started with Junit in NetBeans”. YouTube, YouTube, 2 Feb. 2017, https://www.youtube.com/watch?v=Vnyeq3ZS_1Q.
+ * - "JUnit Best Practices Guide", "How to Do in Java", 26 Dec. 2020, Lokesh Gupta, https://howtodoinjava.com/best-practices/unit-testing-best-practices-junit-reference-guide/"
  *
- * @References: “Getting Started with Junit in NetBeans.” YouTube, YouTube, 2
- * Feb. 2017, https://www.youtube.com/watch?v=Vnyeq3ZS_1Q.
- *
+ * @Notes I understand that the correct guidelines are that I shouldn't be
+ * printing out in unit tests, but it helped me to understand the code provided
+ * and future implementations.
  */
 public class SortedArrayPriorityQueueTest {
 
     public SortedArrayPriorityQueueTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
     }
 
     @Before
@@ -58,9 +53,7 @@ public class SortedArrayPriorityQueueTest {
 
         try {
             assertEquals(expResult, result);
-            System.out.println("Good news - Test Passed!");
         } catch (AssertionError e) {
-            System.out.println("Oopsie, Test Failed");
             System.out.println("Error log: " + e);
         }
         assertEquals(expResult, result);
@@ -82,14 +75,13 @@ public class SortedArrayPriorityQueueTest {
             instance.add("Heidi", 1);
             System.out.println("Priority Queue after using .add: " + instance);
         } catch (AssertionError e) {
-            System.out.println("Oopsie, Test Failed");
             System.out.println("Error log: " + e);
         }
     }
 
     /**
-     * Test of remove method, of class SortedArrayPriorityQueue.
-     * Adding two instances and displaying the queue after removing one of them
+     * Test of remove method, of class SortedArrayPriorityQueue. Adding two
+     * instances and displaying the queue after removing one of them
      */
     @Test
     public void testRemove() throws Exception {
@@ -103,9 +95,7 @@ public class SortedArrayPriorityQueueTest {
         try {
             instance.remove();
             System.out.println("Priority Queue after using .remove: " + instance);
-            System.out.println("Good news - Test Passed!");
         } catch (AssertionError e) {
-            System.out.println("Oopsie, Test Failed");
             System.out.println("Error log: " + e);
         }
     }
@@ -115,14 +105,32 @@ public class SortedArrayPriorityQueueTest {
      */
     @Test
     public void testIsEmpty() {
+        System.out.println("\n" + "isEmpty()");
+        SortedArrayPriorityQueue instance = new SortedArrayPriorityQueue(0);
+        System.out.println("Your Empty Priority Queue: " + instance);
 
+        try {
+            instance.isEmpty();
+            System.out.println("Priority Queue after using .isEmpty: " + instance);
+        } catch (AssertionError e) {
+            System.out.println("Error log: " + e);
+        }
     }
 
     /**
-     * Test of toString method, of class SortedArrayPriorityQueue.
+     * Test of toString method, of class SortedArrayPriorityQueue. Transform an
+     * int parameter to String
      */
     @Test
     public void testToString() {
+        System.out.println("\n" + "toString()");
+        SortedArrayPriorityQueue instance = new SortedArrayPriorityQueue(2);
+        try {
+            int a = 500;
+            instance.add(a, 4);
+        } catch (QueueOverflowException ex) {
+            Logger.getLogger(SortedArrayPriorityQueueTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Your Empty Priority toString(): " + instance.toString());
     }
-
 }
