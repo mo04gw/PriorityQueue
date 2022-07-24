@@ -4,6 +4,8 @@
  */
 package queuemanager;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,28 +16,21 @@ import static org.junit.Assert.*;
 /**
  *
  * @author heidi
- * 
+ *
  *  * @Notes I understand that the correct guidelines are that I shouldn't be
  * printing out in unit tests, but it helped me to understand the code provided
- * and the new implementations.
+ * and the new implementations (such a black box at the same time I am expecting
+ * a result).
  */
 public class UnsortedArrayPriorityQueueTest {
-    
+
     public UnsortedArrayPriorityQueueTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -45,15 +40,16 @@ public class UnsortedArrayPriorityQueueTest {
      */
     @Test
     public void testHead() throws Exception {
-         System.out.println("\n" + "head()");
-        UnsortedArrayPriorityQueue instance = new UnsortedArrayPriorityQueue(3);
+        System.out.println("\n" + "head()");
+        UnsortedArrayPriorityQueue instance = new UnsortedArrayPriorityQueue(4);
         instance.add("Camille", 1);
-        instance.add("Heidi", 20);
-        instance.add("Marc", 2);
-        Object expResult = "Camille";
+        instance.add("Lucas", 7);
+        instance.add("Heidi", 5);
+        instance.add("Paolo", 8);
+        Object result = instance.head();
+        Object expResult = "Paolo";
         System.out.println("Your Priority Queue: " + instance);
         System.out.println("Result of Head: " + instance.head());
-        Object result = instance.head();
 
         try {
             assertEquals(expResult, result);
@@ -69,35 +65,32 @@ public class UnsortedArrayPriorityQueueTest {
     @Test
     public void testAdd() throws Exception {
         System.out.println("\n" + "add()");
-        UnsortedArrayPriorityQueue instance = new UnsortedArrayPriorityQueue(1);
+        UnsortedArrayPriorityQueue instance = new UnsortedArrayPriorityQueue(2);
         System.out.println("Checking empty queue: " + instance);
         assertTrue(instance.isEmpty());
 
         try {
+            instance.add("Tony", 8);
             instance.add("Heidi", 1);
             System.out.println("Priority Queue after using .add: " + instance);
         } catch (AssertionError e) {
             System.out.println("Error log: " + e);
         }
     }
-    
 
     /**
      * Test of remove method, of class UnsortedArrayPriorityQueue.
      */
     @Test
     public void testRemove() throws Exception {
-         System.out.println("\n" + "remove()");
+        System.out.println("\n" + "remove()");
         UnsortedArrayPriorityQueue instance = new UnsortedArrayPriorityQueue(3);
-
-        instance.add("Heidi", 1);
+        instance.add("Heidi", 3);
         instance.add("Marc", 2);
-        instance.add("Rose", 5);
-        
         instance.remove();
-        System.out.println("Error log: " + instance);
-
-       
+        Object result = instance.head();
+        Object expResult = "Marc";
+        assertEquals(expResult, result);
     }
 
     /**
@@ -105,6 +98,15 @@ public class UnsortedArrayPriorityQueueTest {
      */
     @Test
     public void testIsEmpty() {
+        System.out.println("\n" + "isEmpty()");
+        UnsortedArrayPriorityQueue instance = new UnsortedArrayPriorityQueue(1);
+        System.out.println("Your Empty Priority Queue: " + instance);
+        instance.isEmpty();
+        try {
+            System.out.println("Priority Queue after using .isEmpty: " + instance);
+        } catch (AssertionError e) {
+            System.out.println("Error log: " + e);
+        }
     }
 
     /**
@@ -112,6 +114,16 @@ public class UnsortedArrayPriorityQueueTest {
      */
     @Test
     public void testToString() {
+
+        System.out.println("\n" + "toString()");
+        UnsortedArrayPriorityQueue instance = new UnsortedArrayPriorityQueue(2);
+        try {
+            int a = 500;
+            instance.add(a, 4);
+        } catch (QueueOverflowException ex) {
+            Logger.getLogger(SortedArrayPriorityQueueTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Your Empty Priority toString(): " + instance.toString());
     }
-    
+
 }
