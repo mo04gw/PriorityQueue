@@ -16,8 +16,8 @@ import static org.junit.Assert.*;
  * @author heidi
  *
  * @References: 
- * - “Getting Started with Junit in NetBeans”. YouTube, YouTube, 2 Feb. 2017, https://www.youtube.com/watch?v=Vnyeq3ZS_1Q.
- * - "JUnit Best Practices Guide", "How to Do in Java", 26 Dec. 2020, Lokesh Gupta, https://howtodoinjava.com/best-practices/unit-testing-best-practices-junit-reference-guide/"
+ * - “Getting Started with Junit in NetBeans”. YouTube, 2 Feb. 2017, Available at: https://www.youtube.com/watch?v=Vnyeq3ZS_1Q (Accessed: 17/07/2022)."
+ * - "JUnit Best Practices Guide", "How to Do in Java", 26 Dec. 2020, Lokesh Gupta, https://howtodoinjava.com/best-practices/unit-testing-best-practices-junit-reference-guide/ (Accessed: 17/07/2022)."
  *
  * @Notes I understand that the correct guidelines are that I shouldn't be
  * printing out in unit tests, but it helped me to understand the code provided
