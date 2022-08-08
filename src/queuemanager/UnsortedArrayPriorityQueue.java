@@ -1,22 +1,29 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package queuemanager;
 
 /**
- * Implementation of the PriorityQueue ADT using a sorted array for storage.
  *
- * Because Java does not allow generic arrays (!), this is implemented as an
- * array of Object rather than of PriorityItem&lt;T&gt;, which would be natural.
- * Array elements accessed then have to be cast to PriorityItem&lt;T&gt; before
- * using their getItem() or getPriority() methods.
+ * @author heidi
  *
- * This is an example of Java's poor implementation getting in the way. Java
- * fanboys will no doubt explain at length why it has to be this way, but note
- * that Eiffel allows it because Eiffel generics were done right from the start,
- * rather than being tacked on as an afterthought and limited by issues of
- * backward compatibility. Humph!
+ * @References: 
+ * - “Sedgewick, R. and Wayne, K. (2000–2019)
+ * ResizingArrayQueue.java - 1.3 Bags, Queues, and Stacks, Princenton
+ * University, 2 Feb. 2017, Available at:
+ * https://algs4.cs.princeton.edu/13stacks/ResizingArrayQueue.java.html
+ * (Accessed: 23/07/2022)." 
+ * 
+ * - "Sridhar, A. (2020) Priority Queues in Java
+ * Explained with Examples, FreeCodeCamp, Available at:
+ * https://www.freecodecamp.org/news/priority-queue-implementation-in-java/
+ * (Accessed: 24/07/2022)."
  *
- * @param <T> The type of things being stored.
+ * @Notes: Using as reference/structure the SortedArrayPriorityQueue code
+ * provided. Tests Failed, attempted to fix it.
  */
-public class SortedArrayPriorityQueue<T> implements PriorityQueue<T> {
+public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
 
     /**
      * Where the data is actually stored.
@@ -40,35 +47,46 @@ public class SortedArrayPriorityQueue<T> implements PriorityQueue<T> {
      *
      * @param size
      */
-    public SortedArrayPriorityQueue(int size) {
+    public UnsortedArrayPriorityQueue(int size) {
         storage = new Object[size];
         capacity = size;
         tailIndex = -1;
     }
 
+    /* Scan through the entire list. When removing an item, shift
+down all the items after the one you’re removing so as to fill the gap */
     @Override
     public T head() throws QueueUnderflowException {
         if (isEmpty()) {
             throw new QueueUnderflowException();
         } else {
-            return ((PriorityItem<T>) storage[0]).getItem();
+
+            int priority = 0;
+            /* (Storing head: location of highest priority item in the array) */
+            int head = 0;
+            int i = tailIndex + 1;
+            /*(Following similar structure of while loop -> add() SortedArray)*/
+            while (i > 0 && ((PriorityItem<T>) storage[i - 1]).getPriority() < priority) {
+
+                priority = ((PriorityItem<T>) storage[i - 1]).getPriority();
+                head = i - 1;
+            }
+            i = i - 1;
+            return ((PriorityItem<T>) storage[head]).getItem();
         }
     }
 
+    /* (Add: Items are inserted in order of arrival) */
     @Override
     public void add(T item, int priority) throws QueueOverflowException {
         tailIndex = tailIndex + 1;
+
         if (tailIndex >= capacity) {
             /* No resizing implemented, but that would be a good enhancement. */
             tailIndex = tailIndex - 1;
             throw new QueueOverflowException();
         } else {
-            /* Scan backwards looking for insertion point */
             int i = tailIndex;
-            while (i > 0 && ((PriorityItem<T>) storage[i - 1]).getPriority() < priority) {
-                storage[i] = storage[i - 1];
-                i = i - 1;
-            }
             storage[i] = new PriorityItem<>(item, priority);
         }
     }
