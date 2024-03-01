@@ -21,12 +21,12 @@ public class SortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     /**
      * Where the data is actually stored.
      */
-    private final Object[] storage;
+    private Object[] storage;
 
     /**
      * The size of the storage array.
      */
-    private final int capacity;
+    private int capacity;
 
     /**
      * The index of the last item stored.
@@ -57,20 +57,30 @@ public class SortedArrayPriorityQueue<T> implements PriorityQueue<T> {
 
     @Override
     public void add(T item, int priority) throws QueueOverflowException {
-        tailIndex = tailIndex + 1;
-        if (tailIndex >= capacity) {
-            /* No resizing implemented, but that would be a good enhancement. */
-            tailIndex = tailIndex - 1;
-            throw new QueueOverflowException();
-        } else {
-            /* Scan backwards looking for insertion point */
-            int i = tailIndex;
-            while (i > 0 && ((PriorityItem<T>) storage[i - 1]).getPriority() < priority) {
-                storage[i] = storage[i - 1];
-                i = i - 1;
-            }
-            storage[i] = new PriorityItem<>(item, priority);
+        if (tailIndex + 1 >= capacity) {
+            //Resizing (doubleing) the array if it reached capacity
+            resize();
+            System.out.println("Doubling Array size");
+        }tailIndex++;
+        /* Scan backwards looking for insertion point */
+        int i = tailIndex;
+        while (i > 0 && ((PriorityItem<T>) storage[i - 1]).getPriority() < priority) {
+            storage[i] = storage[i - 1];
+            i = i - 1;
         }
+        storage[i] = new PriorityItem<>(item, priority);
+    
+    }
+    // function for resizing or doubleing the array
+    private void resize() {
+        //local variable takes current arraysize and doubles it
+        int newSize = capacity * 2;
+        //new container where we will copy the items from old container to
+        Object[] newStorage = new Object[newSize];
+        System.arraycopy(storage, 0, newStorage, 0, storage.length);
+        storage = newStorage;
+        capacity = newSize;
+        
     }
 
     @Override
