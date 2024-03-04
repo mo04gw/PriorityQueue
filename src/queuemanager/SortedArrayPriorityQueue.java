@@ -60,6 +60,7 @@ public class SortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         if (tailIndex + 1 >= capacity) {
             //Resizing (doubleing) the array if it reached capacity
             resize();
+            // just a check for me to see when the array doubles
             System.out.println("Doubling Array size");
         }tailIndex++;
         /* Scan backwards looking for insertion point */
