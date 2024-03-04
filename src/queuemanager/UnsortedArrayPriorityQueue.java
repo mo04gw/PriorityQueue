@@ -17,8 +17,10 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T>{
     // size of the storage array
     private int capacity;
     
+    // index of last item stored
     private int tailIndex;
     
+    //Constructor for Priorityqueue class
     public UnsortedArrayPriorityQueue(int size) {
         storage = new Object[size];
         capacity = size;
@@ -26,13 +28,19 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T>{
     }
     
     @Override
+    // finds the item on top of the queue
     public T head() throws QueueUnderflowException {
+        // checks of array is empty
         if (isEmpty()) {
             throw new QueueUnderflowException();
         }
+        //temp variable to compare to
         PriorityItem<T> highestPriorityItem = (PriorityItem<T>) storage[0];
+        //looping through array
         for (int i = 0; i < tailIndex; i++) {
+            //comparing item being iterrated against stored temp item to find highest priority
             PriorityItem<T> current = (PriorityItem<T>) storage[i];
+            //if item in array higher then temporary stored, gets replaced
             if (current.getPriority() > highestPriorityItem.getPriority()) {
                 highestPriorityItem = current;                
             }
@@ -41,6 +49,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T>{
     }
 
     @Override
+    // adds an item to the array
     public void add(T item, int priority) throws QueueOverflowException {
         if (tailIndex + 1 >= capacity) {
             //resizing if array is full
@@ -52,6 +61,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T>{
     }
 
     @Override
+    //removing item with highest priority from the array
     public void remove() throws QueueUnderflowException {
         int removeIndex = 0;
         //check if array is empty
@@ -94,12 +104,16 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T>{
     
     // same as in ordered Array
     @Override
+    //method to display the array
     public String toString() {
+        // temp varibale to append items in array to
         String result = "[";
+        // looping through the array and adding items to temp variable
         for (int i = 0; i <= tailIndex; i++) {
             if (i > 0) {
                 result = result + ", ";
             }
+            //adding item to the existing array
             result = result + storage[i];
         }
         result = result + "]";
