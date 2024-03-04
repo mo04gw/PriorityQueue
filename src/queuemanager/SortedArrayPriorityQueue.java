@@ -81,7 +81,6 @@ public class SortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         System.arraycopy(storage, 0, newStorage, 0, storage.length);
         storage = newStorage;
         capacity = newSize;
-        
     }
 
     @Override

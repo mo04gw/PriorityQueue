@@ -32,17 +32,46 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T>{
 
     @Override
     public void add(T item, int priority) throws QueueOverflowException {
-        throw new QueueOverflowException(); 
+        if (tailIndex + 1 >= capacity) {
+            System.out.println("Storage full, resizing");
+            resize();
+        }
+        storage[++tailIndex] = new PriorityItem<>(item, priority);
     }
 
     @Override
     public void remove() throws QueueUnderflowException {
-        throw new QueueUnderflowException();
+        int removeIndex = 0;
+        if (isEmpty()) {
+            throw new QueueUnderflowException();
+        }else {
+            int highestPriority = ((PriorityItem<T>)storage[0]).getPriority();
+            for (int i = 0; i < tailIndex; i++) {
+                if (((PriorityItem<T>)storage[i]).getPriority() > highestPriority){
+                    highestPriority = ((PriorityItem<T>)storage[i]).getPriority();
+                    removeIndex = i;
+                }
+            }
+            storage[removeIndex] = storage[tailIndex];
+            tailIndex--;
+            
+        }
     }
 
     @Override
     public boolean isEmpty() {
         return tailIndex < 0;
+    }
+    
+    // function for resizing or doubleing the array
+    private void resize() {
+        //local variable takes current arraysize and doubles it
+        int newSize = capacity * 2;
+        //new container where we will copy the items from old container to
+        Object[] newStorage = new Object[newSize];
+        System.arraycopy(storage, 0, newStorage, 0, storage.length);
+        storage = newStorage;
+        capacity = newSize;
     }
     
     
