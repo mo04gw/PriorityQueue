@@ -1,19 +1,20 @@
 
 package queuemanager;
 
-/**
- *
- * @param <T> */
+
 public class ListNode<T> {
+    // stores the Item we want to save
     private final PriorityItem<T> item;
+    // pointer to the next node
     private ListNode<T> next;
-    private ListNode<T> previous;
     
-    //Constructor
-    public ListNode(PriorityItem<T> item, ListNode<T> next, ListNode<T> previous) {
+    /*Constructor
+    * @param item to store priority and name
+    * @next stores the pointer to the next node
+    */
+    public ListNode(PriorityItem<T> item) {
         this.item = item;
-        this.next = next;
-        this.previous = previous;
+        this.next = null;
     }
     
     //Getters
@@ -29,19 +30,8 @@ public class ListNode<T> {
     public ListNode<T> getNext() {
         return next;
     }
-    
-    public ListNode<T> getPrevious() {
-        return previous;
-    }
 
     public void setNext(ListNode<T> next) {
         this.next = next;
     }
-
-    public void setPrevious(ListNode<T> previous) {
-        this.previous = previous;
-    }
-    
-    
-    
 }
