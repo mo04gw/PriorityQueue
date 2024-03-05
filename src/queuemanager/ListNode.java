@@ -3,9 +3,9 @@ package queuemanager;
 
 /**
  *
- */
+ * @param <T> */
 public class ListNode<T> {
-    private PriorityItem<T> item;
+    private final PriorityItem<T> item;
     private ListNode<T> next;
     
     //Constructor
@@ -27,4 +27,6 @@ public class ListNode<T> {
     public ListNode<T> getNext() {
         return next;
     }
+    
+    
 }
