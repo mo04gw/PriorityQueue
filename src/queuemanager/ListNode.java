@@ -1,6 +1,9 @@
 
 package queuemanager;
 
+/* Just a wrapper for the PriorityItem to sit in
+*  and  a pointer to point to the next item in the list
+*/
 
 public class ListNode<T> {
     // stores the Item we want to save
