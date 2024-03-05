@@ -15,9 +15,9 @@ public class ListNode<T> {
     * @param item to store priority and name
     * @next stores the pointer to the next node
     */
-    public ListNode(PriorityItem<T> item) {
+    public ListNode(PriorityItem<T> item, ListNode<T> next) {
         this.item = item;
-        this.next = null;
+        this.next = next;
     }
     
     //Getters
