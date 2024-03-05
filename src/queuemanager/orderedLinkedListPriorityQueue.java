@@ -77,4 +77,21 @@ public class OrderedLinkedListPriorityQueue<T> implements PriorityQueue<T>  {
     public boolean isEmpty() {
         return top == null;
     }
+    
+    @Override
+    public String toString() {
+        String result = "[";
+        ListNode<T> current = top;
+        while (current != null) {
+            if (!result.equals("[")) {
+                result += ", ";
+            }
+            result += current.getListItem();
+            current = current.getNext();
+        }
+        result += "]";
+        return result;
+        
+    }
+
 }
