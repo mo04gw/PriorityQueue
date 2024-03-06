@@ -41,7 +41,7 @@ public class OrderedLinkedListPriorityQueue<T> implements PriorityQueue<T>  {
             ListNode<T> current = top;
             // checking where to insert new item into the queue depending on priority
             while (current.getNext() != null && current.getNext().getItemPriority() <= new_Node.getItemPriority()) {
-            current = current.getNext() ;
+            current = current.getNext();
             }
             // inserting the new item at the position and changing where the new and old pointers are pointing to.
             new_Node.setNext(current.getNext());
